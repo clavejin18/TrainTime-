@@ -117,10 +117,6 @@ var Key = "";
 
 		//Save/upload train data to the database.
         database.ref().push(newTrain);
-        
-		//Confirmation modal that appears when user submits form and train is added successfully to the schedule.
-		$(".add-train-modal").html("<p>" + newTrain.trainName + " was successfully added to the current schedule.");
-		$('#addTrain').modal();
 
 		//Remove the text from the form boxes after user presses the add to schedule button.
 		$("#train-name").val("");
