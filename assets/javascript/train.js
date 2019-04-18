@@ -23,12 +23,12 @@ displayRealTime();
 var Row = "";
 var Key = "";
  //Click event for the submit button. When user clicks Submit button to add a train to the schedule...
- $("#submit-button").on("click", function() {
+ document.querySelector("#submit-button").addEventListener("click", function(event) {
 
 	// Prevent form from submitting
 	event.preventDefault();
 
-	//Grab the values that the user enters in the text boxes in the "Add train" section. Store the values in variables.
+	//Grab the values that the user enters in the text boxes in the "Add A train" section. Store the values in variables.
 	var trainName = $("#train-name").val().trim();
 	var destination = $("#destination").val().trim();
 	var firstTrainTime = $("#first-train-time").val().trim();
@@ -98,7 +98,7 @@ var Key = "";
 
 	    // Minute Until Train
 	    var tMinutesTillTrain = trainFrequency - tRemainder;
-	    console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+	    console.log("MINUTES TILL TRAIN: " + MinutesTillTrain);
 
 	    // Next Train
 	    var nextTrain = moment().add(tMinutesTillTrain, "minutes").format("hh:mm A");
