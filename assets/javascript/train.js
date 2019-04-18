@@ -98,7 +98,7 @@ var Key = "";
 
 	    // Minute Until Train
 	    var tMinutesTillTrain = trainFrequency - tRemainder;
-	    console.log("MINUTES TILL TRAIN: " + MinutesTillTrain);
+	    console.log("MINUTES TILL TRAIN: " + minutesTillTrain);
 
 	    // Next Train
 	    var nextTrain = moment().add(tMinutesTillTrain, "minutes").format("hh:mm A");
