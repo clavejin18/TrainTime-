@@ -49,11 +49,16 @@
 							  <thead>
 							    <tr>
 									<th scope="col"></th>
-							    	<th scope="col">Train name <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="The name of the train."></i></th>
-							    	<th scope="col">Destination <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="The location to where the train is traveling to. For example, Chicago, IL."></i></th>
-							    	<th scope="col">Frequency (min) <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="How often (in minutes) the train leaves."></i></th>
-							    	<th scope="col">Next arrival <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="The time the next train will arrive at the destination."></i></th>
-							    	<th scope="col">Minutes away <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="The number of minutes until the next train is expected to arrive at the destination."></i></th>
+									<th scope="col">Train name 
+									</th>
+										<th scope="col">Destination 
+										</th>
+										<th scope="col">Frequency (min) 
+										</th>
+										<th scope="col">Next arrival 
+										</th>
+										<th scope="col">Minutes away 
+										</th>
 							    </tr>
 							  </thead>
 							  <tbody id="schedule-body">
@@ -73,22 +78,24 @@
 					<div class="card-body">
 						<form>
 							<div class="form-group">
-						    	<label for="trainName">Train name <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="The name of the train you want to add to the schedule. For example, Milwaukee Railroad."></i></label>
-						    	<input type="text" class="form-control" id="train-name" placeholder="New Haven Railroad">
+									<label for="trainName">Train name
+									</label>
+						    	<input type="text" class="form-control" id="train-name" placeholder="FastCal">
 						  	</div>
 						  	<div class="form-group">
-						    	<label for="destination">Destination <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="The location to where the train is traveling to. For example, Chicago, IL."></i></label>
-						    	<input type="text" class="form-control" id="destination" placeholder="Boston, MA">
+						    	<label for="destination">Destination		
+									</label>
+						    	<input type="text" class="form-control" id="destination" placeholder="Fremont,CA">
 						  	</div>
 						  	<div class="form-group">
-						    	<label for="firstTrainTime">First train time (HH:mm - military time) <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Enter the first time that the train leaves (specify in military time)."></i></label>
+						    	<label for="firstTrainTime">First train time (HH:mm - military time) </label>
 						    	<small id="not-military-time" class="form-validation"></small>
 						    	<input type="text" class="form-control" id="first-train-time" placeholder="HH:mm">
 						  	</div>
 						  	<div class="form-group">
-						    	<label for="firstTrainTime">Frequency (min) <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="How often (in minutes) the train leaves."></i></label>
+						    	<label for="firstTrainTime">Frequency (min) </label>
 						    	<small id="not-a-number" class="form-validation"></small>
-						    	<input type="text" class="form-control" id="frequency" placeholder="">
+						    	<input type="text" class="form-control" id="frequency" placeholder="minutes">
 						  	</div>
 						  	<p id="missing-field" class="form-validation"></p>
 						  	<button type="submit" class="btn btn-primary rounded" id="submit-button" data-toggle="modal">Add to schedule</button>

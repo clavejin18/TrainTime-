@@ -11,7 +11,7 @@
 //Create database variable to create reference to firebase.database().
  var database = firebase.database();
 
- var minutesTillTrain = 0;
+ var tMinutesTillTrain = 0;
 
 //Show and update current time. Using setInterval method to update time.
 function displayRealTime() {
@@ -82,27 +82,21 @@ var Key = "";
 		//Moment JS math caclulations to determine train next arrival time and the number of minutes away from destination.
 		// First Time (pushed back 1 year to make sure it comes before current time)
 	    var firstTimeConverted = moment(firstTrainTime, "hh:mm").subtract(1, "years");
-	    console.log(firstTimeConverted);
 
 	    // Current Time
 	    var currentTime = moment();
-	    console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
 
 	    // Difference between the times
 	    var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
-	    console.log("DIFFERENCE IN TIME: " + diffTime);
 
 	    // Time apart (remainder)
 	    var tRemainder = diffTime % trainFrequency;
-	    console.log(tRemainder);
 
 	    // Minute Until Train
 	    var tMinutesTillTrain = trainFrequency - tRemainder;
-	    console.log("MINUTES TILL TRAIN: " + minutesTillTrain);
 
 	    // Next Train
 	    var nextTrain = moment().add(tMinutesTillTrain, "minutes").format("hh:mm A");
-	    console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
 
 		//Create local temporary object for holding train data
 		var newTrain = {
@@ -124,4 +118,66 @@ var Key = "";
 		$("#first-train-time").val("");
 		$("#frequency").val("");
 	}
+});
+// function to update webpage on real time
+database.ref().on("child_added", function(childSnapshot, prevChildKey) {
+	console.log(childSnapshot.val());
+	console.log(prevChildKey);
+
+	//Set variables for form input field values equal to the stored values in firebase.
+	var trainName = childSnapshot.val().trainName;
+	var destination = childSnapshot.val().destination;
+	var firstTrainTime = childSnapshot.val().firstTrainTime;
+	var trainFrequency = childSnapshot.val().trainFrequency;
+	var nextTrain = childSnapshot.val().nextTrain;
+	var tMinutesTillTrain = childSnapshot.val().tMinutesTillTrain;
+	var currentTime = childSnapshot.val().currentTime;
+
+	//Train info
+	console.log(trainName);
+	console.log(destination);
+	console.log(firstTrainTime);
+	console.log(nextTrain);
+	console.log(tMinutesTillTrain);
+	console.log(trainFrequency);
+	console.log(currentTime);
+
+	//Moment JS math caclulations to determine train next arrival time and the number of minutes away from destination.
+	// First Time (pushed back 1 year to make sure it comes before current time)
+    var firstTimeConverted = moment(firstTrainTime, "hh:mm").subtract(1, "years");
+    console.log(firstTimeConverted);
+
+    // Current Time
+    var currentTime = moment();
+    console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+
+    // Difference between the times
+    var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+    console.log("DIFFERENCE IN TIME: " + diffTime);
+
+    // Time apart (remainder)
+    var tRemainder = diffTime % trainFrequency;
+    console.log(tRemainder);
+
+    // Minute Until Train
+    var tMinutesTillTrain = trainFrequency - tRemainder;
+    console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+
+    // Next Train
+    var nextTrain = moment().add(tMinutesTillTrain, "minutes").format("hh:mm A");
+    console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
+
+
+	//Update the HTML (schedule table) to reflect the latest stored values in the firebase database.
+	var Row = $("<tr>");
+	var trainTd = $("<td>").text(trainName);
+    var destTd = $("<td>").text(destination);
+    var nextTrainTd = $("<td>").text(nextTrain);
+    var trainFrequencyTd = $("<td>").text(trainFrequency);
+    var tMinutesTillTrainTd = $("<td>").text(tMinutesTillTrain);
+
+    // Append the newly created table data to the table row.
+    Row.append(trainTd, destTd, trainFrequencyTd, nextTrainTd, tMinutesTillTrainTd);
+    // Append the table row to the table body
+    document.querySelector("#schedule-body").append(Row);
 });
