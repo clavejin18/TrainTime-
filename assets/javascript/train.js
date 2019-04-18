@@ -176,7 +176,8 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey) {
     var trainFrequencyTd = $("<td>").text(trainFrequency);
     var tMinutesTillTrainTd = $("<td>").text(tMinutesTillTrain);
 
-    // Append the newly created table data to the table row.
+		// Append the newly created table data to the table row.
+		// working on fixing the code below
     Row.append(trainTd, destTd, trainFrequencyTd, nextTrainTd, tMinutesTillTrainTd);
     // Append the table row to the table body
     document.querySelector("#schedule-body").append(Row);
